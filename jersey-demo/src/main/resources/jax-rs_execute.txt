@@ -1,0 +1,61 @@
+
+http://localhost:8080/jersey_demo/rest/hello
+GET
+
+http://localhost:8080/jersey_demo/rest/sample
+POST
+
+---------------
+
+http://localhost:8080/jersey_demo/rest/messages
+GET
+o/p => json
+
+http://localhost:8080/jersey_demo/rest/messages
+GET
+Header Param - Accept : application/json
+o/p => json
+
+http://localhost:8080/jersey_demo/rest/messages
+GET
+Header Param - Accept : application/xml
+o/p => xml
+
+
+http://localhost:8080/jersey_demo/rest/messages/3
+GET
+o/p => json
+
+http://localhost:8080/jersey_demo/rest/messages
+POST
+
+Header Param - 
+Content-Type:'application/json'
+raw, JSON from the drop down
+{
+    "author": "Ricky Pointing",
+    "created": "Sun Oct 04 10:44:31 IST 2020",
+    "message": "Delhi goes top in points table"
+}
+
+http://localhost:8080/jersey_demo/rest/messages/3
+PUT
+Content-Type:'application/json'
+raw, JSON from the drop down
+{
+    "author": "Virat Kohli 1",
+    "created": "15/09/2020",
+    "message": "Cricket is a funny game"
+}
+
+http://localhost:8080/jersey_demo/rest/messages/3
+DELETE
+
+
+---------------------Sub-Resources----------------------
+
+http://localhost:8080/jersey_demo/rest/messages/2/comments
+GET
+
+http://localhost:8080/jersey_demo/rest/messages/2/comments/2
+GET

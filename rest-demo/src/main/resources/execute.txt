@@ -1,0 +1,118 @@
+
+http://localhost:8080/time
+GET
+
+---------------
+h2-console
+URL http://localhost:8080/h2-console
+connect
+
+
+http://localhost:8080/books
+POST
+
+Header Parameter -
+Content-Type:'application/json'
+raw, JSON from the drop down
+{
+    "bookid": "5433",
+    "bookname": "Core and Advance Java",
+    "author": "R. Nageswara Rao",
+    "price": "800"
+}
+{
+    "bookid": "5982",
+    "bookname": "Programming with Java",
+    "author": "E. Balagurusamy",
+    "price": "350"
+}
+{
+    "bookid": "6321",
+    "bookname": "Data Structures and Algorithms in Java",
+    "author": "Robert Lafore",
+    "price": "590"
+}
+{
+    "bookid": "6830",
+    "bookname": "Effective Java",
+    "author": "Joshua Bloch",
+    "price": "670"
+}
+
+http://localhost:8080/books
+GET
+o/p => json
+
+
+http://localhost:8080/books/6830
+GET
+o/p => json
+
+
+http://localhost:8080/books/6830
+PUT
+Content-Type:'application/json'
+raw, JSON from the drop down
+
+{
+    "bookid": "5433",
+    "bookname": "Core and Advance Java",
+    "author": "R. Nageswara Rao",
+    "price": "900"
+}
+
+
+http://localhost:8080/books/5433
+DELETE
+
+http://localhost:8080/books/5433
+PATCH
+
+Header Parameter -
+Content-Type:'application/json'
+raw, JSON from the drop down
+
+
+
+-------------------------API Versioning -----------------------
+
+
+    /*  URI Versioning
+    http://localhost:8080/v1/actor
+    http://localhost:8080/v2/actor
+     */
+
+
+    /*  Request Parameter Versioning
+    http://localhost:8080/actor/param?version=1
+    http://localhost:8080/actor/param?version=2
+     */
+
+	Send a key-value in header parameter X-API-VERSION:1/2
+    /*      (Custom) Headers Versioning
+            http://localhost:8080/actor/header
+                headers=[X-API-VERSION=1]
+            http://localhost:8080/actor/header
+                headers=[X-API-VERSION=2]
+     */
+
+    /*      Media Type Versioning (a.k.a “Content Negotiation” or “Accept Header”)
+            http://localhost:8080/actor/produces
+                headers[Accept=application/vnd.company.app-v1+json]
+            http://localhost:8080/actor/produces
+                headers[Accept=application/vnd.company.app-v2+json]
+     */
+
+
+------------------------- Content Negotiation -----------------------
+http://localhost:8080/messages
+GET
+Accept : application/json
+response = > json
+
+
+http://localhost:8080/messages
+GET
+Accept : application/xml
+response = > xml
+

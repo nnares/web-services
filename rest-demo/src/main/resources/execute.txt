@@ -1,14 +1,12 @@
 
-http://localhost:8080/time
-GET
+h2-console
+http://localhost:8090/h2-console
+connect
+select * from Books;
 
 ---------------
-h2-console
-URL http://localhost:8080/h2-console
-connect
 
-
-http://localhost:8080/books
+http://localhost:8090/books
 POST
 
 Header Parameter -
@@ -39,17 +37,17 @@ raw, JSON from the drop down
     "price": "670"
 }
 
-http://localhost:8080/books
+http://localhost:8090/books
 GET
 o/p => json
 
 
-http://localhost:8080/books/6830
+http://localhost:8090/books/6830
 GET
 o/p => json
 
 
-http://localhost:8080/books/6830
+http://localhost:8090/books/6830
 PUT
 Content-Type:'application/json'
 raw, JSON from the drop down
@@ -62,10 +60,10 @@ raw, JSON from the drop down
 }
 
 
-http://localhost:8080/books/5433
+http://localhost:8090/books/5433
 DELETE
 
-http://localhost:8080/books/5433
+http://localhost:8090/books/5433
 PATCH
 
 Header Parameter -
@@ -78,40 +76,40 @@ raw, JSON from the drop down
 
 
     /*  URI Versioning
-    http://localhost:8080/v1/actor
-    http://localhost:8080/v2/actor
+    http://localhost:8090/v1/actor
+    http://localhost:8090/v2/actor
      */
 
 
     /*  Request Parameter Versioning
-    http://localhost:8080/actor/param?version=1
-    http://localhost:8080/actor/param?version=2
+    http://localhost:8090/actor/param?version=1
+    http://localhost:8090/actor/param?version=2
      */
 
 	Send a key-value in header parameter X-API-VERSION:1/2
     /*      (Custom) Headers Versioning
-            http://localhost:8080/actor/header
+            http://localhost:8090/actor/header
                 headers=[X-API-VERSION=1]
-            http://localhost:8080/actor/header
+            http://localhost:8090/actor/header
                 headers=[X-API-VERSION=2]
      */
 
     /*      Media Type Versioning (a.k.a “Content Negotiation” or “Accept Header”)
-            http://localhost:8080/actor/produces
+            http://localhost:8090/actor/produces
                 headers[Accept=application/vnd.company.app-v1+json]
-            http://localhost:8080/actor/produces
+            http://localhost:8090/actor/produces
                 headers[Accept=application/vnd.company.app-v2+json]
      */
 
 
 ------------------------- Content Negotiation -----------------------
-http://localhost:8080/messages
+http://localhost:8090/messages
 GET
 Accept : application/json
 response = > json
 
 
-http://localhost:8080/messages
+http://localhost:8090/messages
 GET
 Accept : application/xml
 response = > xml

@@ -2,26 +2,22 @@ package com.nish.restdemo.model;
 
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 //mark class as an Entity
 @Entity
 //defining DB table name as class name
-@Table
-@Getter @Setter @NoArgsConstructor
+@Table(name = "books")
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@ToString
 public class Books {
     //Defining book id as primary key
     @Id
-    @Column
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private int bookId;
-    @Column
+    @Column(name = "book_name", nullable = false)
     private String bookName;
     @Column
     private String author;

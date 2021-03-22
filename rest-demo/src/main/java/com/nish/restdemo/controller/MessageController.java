@@ -1,20 +1,17 @@
 package com.nish.restdemo.controller;
 
-/*import com.nish.boot.model.Message;
-import com.nish.boot.service.MessageServiceHardCodedValue;
+import com.nish.restdemo.model.Message;
+import com.nish.restdemo.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;*/
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@RestController
+@RestController
 public class MessageController {
 
-/*    @Autowired
-    MessageService messageService;*/
-
- /*   @Autowired
-    MessageServiceHardCodedValue messageService;
+    @Autowired
+    MessageService messageService;
 
 
     @RequestMapping(value = "/test", method = RequestMethod.GET, produces = {"application/text"})
@@ -56,6 +53,5 @@ public class MessageController {
     public Message deleteMessage(@PathVariable("messageId") int id) {
         return messageService.deleteMessage(id);
     }
-*/
 }
 

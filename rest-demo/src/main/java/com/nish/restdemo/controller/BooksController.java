@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class BooksController {
 
     @Autowired
-    BooksService booksService;
+    private BooksService booksService;
 
     //creating a get mapping that retrieves all the books detail from the database
     @GetMapping("/books")

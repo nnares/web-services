@@ -11,7 +11,7 @@ import java.util.List;
 public class MessageController {
 
     @Autowired
-    MessageService messageService;
+    private MessageService messageService;
 
 
     @RequestMapping(value = "/test", method = RequestMethod.GET, produces = {"application/text"})
@@ -40,14 +40,15 @@ public class MessageController {
         return messageService.updateMessage(message);
     }
 
-//    @RequestMapping(method = RequestMethod.PATCH, value = "/messages/{messageId}")
-    @PatchMapping("/messages/{messageId}")
+//    @PatchMapping("/messages/{messageId}")
+    @RequestMapping(method = RequestMethod.PATCH, value = "/messages/{messageId}")
     public Message updateMessageText(@RequestBody String messageText, @PathVariable("messageId") int id) {
         Message message =  messageService.getMessageById(id);
+        // patch logic is only applied over the message attribute,
+        // so what ever we will pass from post man that is gets updated for message attribute
         message.setMessage(messageText);
         return messageService.updateMessage(message);
     }
-
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/messages/{messageId}")
     public Message deleteMessage(@PathVariable("messageId") int id) {

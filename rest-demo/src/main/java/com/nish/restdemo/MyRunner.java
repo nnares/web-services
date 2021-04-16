@@ -40,9 +40,8 @@ public class MyRunner implements CommandLineRunner {
         logger.info("All Books unsorted:");
 
         Iterable<Books> employees = booksRepository.findAll();
-        Iterator<Books> iterator = employees.iterator();
-        while (iterator.hasNext()) {
-            logger.info("{}", iterator.next().toString());
+        for (Books employee : employees) {
+            logger.info("{}", employee.toString());
         }
 
         logger.info("------------------------");
@@ -53,7 +52,7 @@ public class MyRunner implements CommandLineRunner {
         logger.info("# of books : {}", booksRepository.count());
 
         if(booksRepository.existsById(6830)){
-            logger.info("Book with id 6830 - {}", booksRepository.findById(6830).get());
+            logger.info("Book with id 6830 - {}", booksRepository.findById(6830).orElse(null));
         }
 
     }

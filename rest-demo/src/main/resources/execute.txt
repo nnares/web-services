@@ -2,107 +2,183 @@
 h2-console
 http://localhost:8090/h2-console
 connect
-select * from Books;
 
----------------
+sql - select * from Books;
+
+-----------------books--------------------
 
 http://localhost:8090/books
-POST
+GET
 
 Header Parameter -
 Content-Type:'application/json'
 raw, JSON from the drop down
-{
-    "bookid": "5433",
-    "bookname": "Core and Advance Java",
-    "author": "R. Nageswara Rao",
-    "price": "800"
-}
-{
-    "bookid": "5982",
-    "bookname": "Programming with Java",
-    "author": "E. Balagurusamy",
-    "price": "350"
-}
-{
-    "bookid": "6321",
-    "bookname": "Data Structures and Algorithms in Java",
-    "author": "Robert Lafore",
-    "price": "590"
-}
-{
-    "bookid": "6830",
-    "bookname": "Effective Java",
-    "author": "Joshua Bloch",
-    "price": "670"
-}
+[
+    {
+        "bookId": 5982,
+        "bookName": "Programming with Java",
+        "author": "E. Balagurusamy",
+        "price": 350
+    },
+    {
+        "bookId": 6321,
+        "bookName": "Data Structures and Algorithms in Java",
+        "author": "R. Nageswara Rao",
+        "price": 590
+    },
+    {
+        "bookId": 6830,
+        "bookName": "Effective Java",
+        "author": "Joshua Bloch",
+        "price": 670
+    },
+    {
+        "bookId": 9999,
+        "bookName": "Concurrency In Practice",
+        "author": "Brian Goetz",
+        "price": 1200
+    }
+]
 
-http://localhost:8090/books
+http://localhost:8090/books/9999
 GET
 o/p => json
 
 
-http://localhost:8090/books/6830
-GET
-o/p => json
-
-
-http://localhost:8090/books/6830
+http://localhost:8090/books/
 PUT
 Content-Type:'application/json'
 raw, JSON from the drop down
 
-{
-    "bookid": "5433",
-    "bookname": "Core and Advance Java",
-    "author": "R. Nageswara Rao",
-    "price": "900"
-}
+    {
+        "bookId": 9999,
+        "bookName": "Concurrency In Practice -1",
+        "author": "Brian Goetz -1",
+        "price": 1500
+    }
 
 
-http://localhost:8090/books/5433
+http://localhost:8090/books/9999
 DELETE
 
+http://localhost:8090/books
+POST
+    {
+        "bookId": 9999,
+        "bookName": "Concurrency In Practice",
+        "author": "Brian Goetz",
+        "price": 1200
+    }
+
 http://localhost:8090/books/5433
+PATCH
+
+
+------------------------- Message -----------------------
+http://localhost:8090/books
+GET
+o/p => text
+Test Response String
+
+
+http://localhost:8090/messages
+GET, Content-Type:'application/json'
+
+[
+    {
+        "id": 1,
+        "message": "IPL is kicking off tomorrow",
+        "author": "BCCI",
+        "created": "18/09/2020"
+    },
+    {
+        "id": 2,
+        "message": "Today's poll - Mountain / Beach ?",
+        "author": "Time Of India",
+        "created": "31/11/2020"
+    },
+    {
+        "id": 3,
+        "message": "Covid vaccine will start from tomorrow",
+        "author": "Indian Govt",
+        "created": "14/01/2021"
+    },
+    {
+        "id": 4,
+        "message": "New financial year start today",
+        "author": "RBI",
+        "created": "01/04/2021"
+    }
+]
+
+
+http://localhost:8090/messages/
+POST
+o/p => json
+    {
+        "message": "Covid second wave is coming",
+        "author": "Time Of India",
+        "created": "02/04/2021"
+    }
+
+http://localhost:8090/messages/5
+GET
+o/p => json
+
+http://localhost:8090/messages/5
+PUT, Content-Type:'application/json'
+o/p => json
+{
+    "message": "Covid second wave is coming 1",
+    "author": "Time Of India 1",
+    "created": "02/05/2021"
+}
+
+http://localhost:8090/messages/5
+DELETE
+o/p => json
+
+
+http://localhost:8080/messages/3
 PATCH
 
 Header Parameter -
 Content-Type:'application/json'
 raw, JSON from the drop down
 
-
-
+    {
+        "message": "Covid vaccine will start from tomorrow for all 45+",
+        "author": "Indian Govt",
+        "created": "01/04/2021"
+    }
 -------------------------API Versioning -----------------------
 
 
-    /*  URI Versioning
-    http://localhost:8090/v1/actor
-    http://localhost:8090/v2/actor
-     */
+URI Versioning
+GET,    http://localhost:8090/v1/actor
+GET,    http://localhost:8090/v2/actor
 
 
-    /*  Request Parameter Versioning
-    http://localhost:8090/actor/param?version=1
-    http://localhost:8090/actor/param?version=2
-     */
+Request Parameter Versioning
+GET,    http://localhost:8090/actor/param?version=1
+GET,    http://localhost:8090/actor/param?version=2
 
-	Send a key-value in header parameter X-API-VERSION:1/2
-    /*      (Custom) Headers Versioning
-            http://localhost:8090/actor/header
-                headers=[X-API-VERSION=1]
-            http://localhost:8090/actor/header
-                headers=[X-API-VERSION=2]
-     */
 
-    /*      Media Type Versioning (a.k.a “Content Negotiation” or “Accept Header”)
-            http://localhost:8090/actor/produces
-                headers[Accept=application/vnd.company.app-v1+json]
-            http://localhost:8090/actor/produces
-                headers[Accept=application/vnd.company.app-v2+json]
-     */
+Headers Versioning : Send a key-value in header parameter X-API-VERSION:1/2
+GET,    http://localhost:8090/actor/header, X-API-VERSION=1
+GET,    http://localhost:8090/actor/header, X-API-VERSION=2
+
+
+Media Type Versioning (a.k.a “Content Negotiation” or “Accept Header”)
+Send a key-value in header parameter Accept:application/vnd.company.app-v1+json / application/vnd.company.app-v2+json
+
+GET,    http://localhost:8090/actor/produces,   Accept=application/vnd.company.app-v1+json
+GET,    http://localhost:8090/actor/produces,   Accept=application/vnd.company.app-v2+json
 
 
 ------------------------- Content Negotiation -----------------------
+for that we need to add jackson jar in pom.xml
+
 http://localhost:8090/messages
 GET
 Accept : application/json

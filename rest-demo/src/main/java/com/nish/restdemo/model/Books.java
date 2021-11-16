@@ -3,6 +3,7 @@ package com.nish.restdemo.model;
 
 
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
@@ -10,18 +11,21 @@ import javax.persistence.*;
 @Entity
 //defining DB table name as class name
 @Table(name = "books")
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor
-@ToString
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Books {
     //Defining book id as primary key
     @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int bookId;
+    int bookId;
     @Column(name = "book_name", nullable = false)
-    private String bookName;
+    String bookName;
     @Column
-    private String author;
+    String author;
     @Column
-    private int price;
+    int price;
 
 }
